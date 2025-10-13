@@ -1,0 +1,65 @@
+<mat-card>
+  <mat-card-title>Create Document</mat-card-title>
+  <mat-card-content>
+
+    <div class="field">
+      <label>Template</label>
+      <mat-select [(ngModel)]="selectedTemplateId">
+        <mat-option *ngFor="let t of templates" [value]="t.id">
+          {{t.name}}
+        </mat-option>
+      </mat-select>
+    </div>
+
+    <div class="field">
+      <label>Export Type</label>
+      <mat-select [(ngModel)]="exportType">
+        <mat-option value="pptx">PPTX</mat-option>
+        <mat-option value="pdf">PDF</mat-option>
+      </mat-select>
+    </div>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" (click)="onGenerate()">
+        <mat-card>
+          <mat-card-title>Create Document</mat-card-title>
+          <mat-card-content>
+
+            <div class="field">
+              <label>Template</label>
+              <mat-select [(ngModel)]="selectedTemplateId">
+                <mat-option *ngFor="let t of templates" [value]="t.id">
+                  {{t.name}}
+                </mat-option>
+              </mat-select>
+            </div>
+
+            <div class="field">
+              <label>Export Type</label>
+              <mat-select [(ngModel)]="exportType">
+                <mat-option value="pptx">PPTX</mat-option>
+                <mat-option value="pdf">PDF</mat-option>
+              </mat-select>
+            </div>
+
+            <div class="actions">
+              <button mat-raised-button color="primary" (click)="onGenerate()">
+                Generate Document
+              </button>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <h4 style="margin-top: 12px;">Recent Documents</h4>
+            <mat-list>
+              <mat-list-item *ngFor="let d of recentDocs">
+                <div matLine>{{d.name}}</div>
+                <div matLine style="font-size:12px;">{{d.date | date:'short'}}</div>
+                <button mat-icon-button (click)="openUrl(d.url)">
+                  <mat-icon>open_in_new</mat-icon>
+                </button>
+              </mat-list-item>
+            </mat-list>
+
+          </mat-card-content>
+        </mat-card>
